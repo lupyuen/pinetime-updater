@@ -153,6 +153,8 @@ function install_openocd_spi {
         brew install $modules
     elif command -v apt &> /dev/null; then
         #  For Debian
+        sudo apt update
+        sudo apt upgrade
         sudo apt install -y $modules
     elif command -v pacman &> /dev/null; then
         #  For Arch Linux
@@ -187,6 +189,8 @@ function install_neofetch {
         brew install $modules
     elif command -v apt &> /dev/null; then
         #  For Debian
+        sudo apt update
+        sudo apt upgrade
         sudo apt install -y $modules
     elif command -v pacman &> /dev/null; then
         #  For Arch Linux
