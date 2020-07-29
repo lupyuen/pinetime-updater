@@ -1,4 +1,4 @@
-# pinetime-updater: Flash firmware to PineTime the wired way with OpenOCD
+# pinetime-updater: Flash firmware to PineTime the friendly wired way with OpenOCD
 
 ![](pinetime-updater.png)
 
