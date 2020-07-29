@@ -169,7 +169,7 @@ function install_openocd_spi {
     pushd openocd-spi
     ./bootstrap
     ./configure --enable-sysfsgpio --enable-bcm2835spi --enable-cmsis-dap
-    make
+    make -j
     popd
     if [ ! -d openocd-spi/bin ]; then
         mkdir openocd-spi/bin
@@ -180,15 +180,17 @@ function install_openocd_spi {
 #  Install neofetch
 function install_neofetch {
     #  Return if already installed
-    if command -v git &> /dev/null; then
-        if command -v neofetch &> /dev/null; then
-            if command -v wget &> /dev/null; then
-                return
+    if command -v dialog &> /dev/null; then
+        if command -v git &> /dev/null; then
+            if command -v neofetch &> /dev/null; then
+                if command -v wget &> /dev/null; then
+                    return
+                fi
             fi
         fi
     fi
     #  Modules to be installed
-    local modules="git neofetch wget"
+    local modules="dialog git neofetch wget"
     set +x; echo; echo "----- Installing $modules..."; set -x
 
     if [[ $(uname) == Darwin ]]; then
