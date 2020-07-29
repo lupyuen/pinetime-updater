@@ -128,6 +128,12 @@ function install_openocd {
     tar -xf xpack-openocd-$version-$os.tar.gz
     rm xpack-openocd-$version-$os.tar.gz
     mv xpack-openocd-$version xpack-openocd
+
+    #  TODO: For Linux Only: Install UDEV Rules according to https://xpack.github.io/openocd/install/#udev
+    #  if [ -d /etc/udev/rules.d ]; then
+    #    sudo cp xpack-openocd/contrib/60-openocd.rules /etc/udev/rules.d/
+    #    sudo udevadm control --reload-rules
+    #  fi
 }
 
 #  Download and build openocd-spi from github.com/lupyuen/openocd-spi

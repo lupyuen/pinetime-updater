@@ -13,10 +13,10 @@ PineTime's Flash ROM Protection should have been disabled.
 To run:
 
 ```bash
-# For Raspberry Pi Only: Enable SPI port
+# For Raspberry Pi Only: Enable SPI port with raspi-config
 raspi-config
 
-# For macOS Only: Install brew (https://brew.sh/)
+# For macOS Only: Install brew according to https://brew.sh/
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # Download the bash and OpenOCD scripts
