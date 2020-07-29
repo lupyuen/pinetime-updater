@@ -32,11 +32,13 @@ function main {
         -f scripts/flash-program.ocd
 }
 
-#  Download xPack OpenOCD from https://xpack.github.io/openocd/install/
+#  Download xPack OpenOCD from xpack.github.io/openocd/install/
 function install_openocd {
+    #  Exit if already installed
     if [ -e xpack-openocd/bin/openocd ]; then
         return
     fi
+    sudo apt install -y wget git
 
     if [[ $(uname -m) == aarch64 ]]; then
         rm xpack-openocd-0.10.0-14-linux-arm64.tar.gz
@@ -68,6 +70,23 @@ function install_openocd {
 
     #  Win64:
     #  https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-win32-x64.zip
+}
+
+#  Download and build openocd_spi from github.com/lupyuen/openocd-spi
+function install_openocd_spi {
+    #  Exit if already installed
+    if [ -e openocd_spi/bin/openocd ]; then
+        return
+    fi
+    set +x; echo; echo "----- Installing build tools..."; set -x
+    sudo apt install -y wget git autoconf libtool make pkg-config libusb-1.0-0 libusb-1.0-0-dev libhidapi-dev libftdi-dev telnet
+
+    git clone https://github.com/lupyuen/openocd-spi
+    pushd openocd-spi
+    ./bootstrap
+    ./configure --enable-sysfsgpio --enable-bcm2835spi --enable-cmsis-dap
+    make
+    popd
 }
 
 #  Start the script
