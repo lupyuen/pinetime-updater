@@ -14,10 +14,14 @@ To run:
 # For Raspberry Pi Only: Enable SPI port
 raspi-config
 
+# For macOS Only: Install brew (https://brew.sh/)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+# Download the bash and OpenOCD scripts
 git clone https://github.com/lupyuen/pinetime-updater
 
+# Run the bash script
 cd pinetime-updater
-
 ./run.sh
 
 ```
