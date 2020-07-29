@@ -1,16 +1,22 @@
 # pinetime-updater: Flash firmware to PineTime the wired way with OpenOCD
 
-Requirements:
+![](pinetime-updater.png)
+
+- Flash the latest Bootloader and Firmware (FreeRTOS) to PineTime Smart Watch with OpenOCD
+
+- Installs xPack OpenOCD automatically
+
+- Uses [`openocd-spi`](https://github.com/lupyuen/openocd-spi) on Raspberry Pi
+
+## Requirements
 
 -   Linux or macOS, connected to PineTime with [ST-Link v2 Compatible](https://www.aliexpress.com/wholesale?catId=0&initiative_id=SB_20180924134644&SearchText=st-link+v2&switch_new_app=y)
 
--   Raspberry Pi with Raspberry Pi OS, connected to PineTime via the SPI port...
+-   Or Raspberry Pi with Raspberry Pi OS, connected to PineTime via the SPI port...
 
     ["Connect PineTime to Raspberry Pi"](https://github.com/lupyuen/visual-embedded-rust/blob/master/README.md#connect-pinetime-to-raspberry-pi)
 
-PineTime's Flash ROM Protection should have been disabled.
-
-To run:
+## How To Run
 
 ```bash
 # For macOS Only: Install brew according to https://brew.sh/
@@ -28,8 +34,17 @@ cd pinetime-updater
 
 ```
 
+## Remove Flash ROM Protection
+
+The above steps will fail when PineTime has Flash ROM Protection enabled.
+
+To remove PineTime's Flash ROM Protection (with Raspberry Pi only)...
+
+```bash
+cd pinetime-updater
+./scripts/flash-unprotect.sh
+```
+
 ## How It Works
 
 See [`run.sh`](run.sh)
-
-![](pinetime-updater.png)
