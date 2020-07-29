@@ -4,8 +4,8 @@
 set -e  #  Exit when any command fails.
 set -x  #  Echo all commands.
 
-#  TODO: Fetch the latest bootloader and application firmware versions
-#  git pull
+#  Fetch the latest bootloader and application firmware versions
+git pull
 
 function main {
     #  Install neofetch
