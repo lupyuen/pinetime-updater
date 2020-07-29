@@ -171,13 +171,17 @@ function install_openocd_spi {
 #  Install neofetch
 function install_neofetch {
     #  Return if already installed
-    if command -v neofetch &> /dev/null; then
-        return
+    if command -v git &> /dev/null; then
+        if command -v neofetch &> /dev/null; then
+            if command -v wget &> /dev/null; then
+                return
+            fi
+        fi
     fi
-    set +x; echo; echo "----- Installing neofetch..."; set -x
-
     #  Modules to be installed
     local modules="git neofetch wget"
+    set +x; echo; echo "----- Installing $modules..."; set -x
+
     if [[ $(uname) == Darwin ]]; then
         #  For macOS
         brew install $modules
