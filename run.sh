@@ -143,11 +143,10 @@ function install_openocd_spi {
     if [ -e openocd-spi/bin/openocd ]; then
         return
     fi
-    set +x; echo; echo "----- Installing openocd-spi..."; set -x
-
 
     #  Modules to be installed
     local modules="wget git autoconf libtool make pkg-config libusb-1.0-0 libusb-1.0-0-dev libhidapi-dev libftdi-dev telnet raspi-config"
+    set +x; echo; echo "----- Installing $modules..."; set -x
     if [[ $(uname) == Darwin ]]; then
         #  For macOS
         brew install $modules
@@ -162,6 +161,7 @@ function install_openocd_spi {
     fi
 
     #  Download and build openocd-spi
+    set +x; echo; echo "----- Installing openocd-spi..."; set -x
     git clone https://github.com/lupyuen/openocd-spi
     pushd openocd-spi
     ./bootstrap
