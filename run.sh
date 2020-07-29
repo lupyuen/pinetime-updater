@@ -120,7 +120,7 @@ function install_openocd {
     #  Win32: https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-win32-x32.zip
     #  Win64: https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-win32-x64.zip
 
-    #  Download xPack OpenOCD
+    #  Download xPack OpenOCD to xpack-openocd
     if [ -f xpack-openocd-$version-$os.tar.gz ]; then
         rm xpack-openocd-$version-$os.tar.gz
     fi
@@ -129,11 +129,12 @@ function install_openocd {
     rm xpack-openocd-$version-$os.tar.gz
     mv xpack-openocd-$version xpack-openocd
 
-    #  TODO: For Linux Only: Install UDEV Rules according to https://xpack.github.io/openocd/install/#udev
-    #  if [ -d /etc/udev/rules.d ]; then
-    #    sudo cp xpack-openocd/contrib/60-openocd.rules /etc/udev/rules.d/
-    #    sudo udevadm control --reload-rules
-    #  fi
+    #  For Linux Only: Install UDEV Rules according to https://xpack.github.io/openocd/install/#udev
+    if [ -d /etc/udev/rules.d ]; then
+        set +x; echo; echo "----- Installing UDEV Rules for ST-Link..."; set -x
+        sudo cp xpack-openocd/contrib/60-openocd.rules /etc/udev/rules.d/
+        sudo udevadm control --reload-rules
+    fi
 }
 
 #  Download and build openocd-spi from github.com/lupyuen/openocd-spi
