@@ -9,27 +9,36 @@ set -x  #  Echo all commands.
 function main {
     #  Configure SWD Programmer
     #  Select ST-Link v2 as SWD Programmer
-    local swd_device=scripts/swd-stlink.ocd
-
-    #  Select Raspberry Pi as SWD Programmer
-    #  local swd_device=scripts/swd-pi.ocd
+    swd_device=scripts/swd-stlink.ocd
 
     #  Download xPack OpenOCD
-    #  install_openocd
+    install_openocd
 
-    #  TODO: Build openocd-spi
+    #  Select Raspberry Pi as SWD Programmer
+    #  swd_device=scripts/swd-pi.ocd
 
-    dialog --menu "What would you like to flash to PineTime today?" 0 0 0 1 "Latest Bootloader" 2 "Latest Firmware (FreeRTOS)" 3 "Download from URL" 4 "Downloaded file"
+    #  Download openocd-spi
+    #  install_openocd_spi
+
+    #  dialog --menu "What would you like to flash to PineTime today?" 0 0 0 1 "Latest Bootloader" 2 "Latest Firmware (FreeRTOS)" 3 "Download from URL" 4 "Downloaded file"
 
     #  Flash the device
+    filename="a.img"
+    address=0x8000
     xpack-openocd/bin/openocd \
+        -c " set filename \"$filename\" " \
+        -c " set address \"$address\" " \
         -f $swd_device \
-        -f scripts/flash-app.ocd
+        -f scripts/flash-program.ocd
 }
 
+#  Download xPack OpenOCD from https://xpack.github.io/openocd/install/
 function install_openocd {
-    #  Download xPack OpenOCD from https://xpack.github.io/openocd/install/
-    if [[ $(uname -m) == aarch64 ]];then
+    if [ -e xpack-openocd/bin/openocd ]; then
+        return
+    fi
+
+    if [[ $(uname -m) == aarch64 ]]; then
         rm xpack-openocd-0.10.0-14-linux-arm64.tar.gz
         wget https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-linux-arm64.tar.gz
         tar -xf xpack-openocd-0.10.0-14-linux-arm64.tar.gz
@@ -60,3 +69,6 @@ function install_openocd {
     #  Win64:
     #  https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-win32-x64.zip
 }
+
+#  Start the script
+main
