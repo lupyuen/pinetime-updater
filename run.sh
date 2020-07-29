@@ -27,7 +27,7 @@ function main {
     address=0x8000
     xpack-openocd/bin/openocd \
         -c " set filename \"$filename\" " \
-        -c " set address \"$address\" " \
+        -c " set address  \"$address\" " \
         -f $swd_device \
         -f scripts/flash-program.ocd
 }
