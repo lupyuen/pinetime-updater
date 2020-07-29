@@ -8,6 +8,12 @@ tar -xf xpack-openocd-0.10.0-14-linux-arm64.tar.gz
 rm xpack-openocd-0.10.0-14-linux-arm64.tar.gz
 mv xpack-openocd-0.10.0-14 xpack-openocd
 
+if [[ $(uname -m) == aarch64 ]];then
+    wget https://dl.google.com/go/go1.13.6.linux-arm64.tar.gz
+else
+    wget https://dl.google.com/go/go1.13.6.linux-armv6l.tar.gz
+fi
+
 xpack-openocd/bin/openocd
 ```
 
