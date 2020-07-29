@@ -82,7 +82,7 @@ function main {
     wget $url -O $filename
 
     #  Flash the device    
-    set +x; echo; echo "----- Flashing $filename..."; set -x
+    set +x; echo; echo "----- Flashing $filename to address $address..."; set -x
     "$openocd" \
         -c " set filename \"$filename\" " \
         -c " set address  \"$address\" " \
@@ -175,6 +175,7 @@ function install_openocd_spi {
         mkdir openocd-spi/bin
     fi
     cp openocd-spi/src/openocd openocd-spi/bin/
+    cp -r openocd-spi/tcl openocd-spi/scripts
 }
 
 #  Install neofetch

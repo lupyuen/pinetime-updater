@@ -1,5 +1,8 @@
 # OpenOCD script for using Raspberry Pi as SWD Programmer for nRF52
 
+# Needed for openocd-spi
+add_script_search_dir openocd-spi/scripts
+
 # Select the Broadcom SPI interface for Raspberry Pi (SWD transport)
 interface bcm2835spi
 
