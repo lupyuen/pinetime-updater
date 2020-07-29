@@ -31,6 +31,8 @@ function main {
 
     #  TODO: Download the file
 
+    #  TODO: If the URL is a GitHub Actions Artifact, prompt for GitHub Token
+
     #  Flash the device
     filename="a.img"
     address=0x8000
