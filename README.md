@@ -2,11 +2,15 @@
 
 ![](pinetime-updater.png)
 
--   Flash the __Latest Bootloader and Firmware__ (FreeRTOS) to PineTime Smart Watch with OpenOCD
+-   Flash the [__Latest Bootloader (MCUBoot)__](https://lupyuen.github.io/pinetime-rust-mynewt/articles/mcuboot) and [__Firmware (FreeRTOS)__](https://github.com/JF002/Pinetime) to [__PineTime Smart Watch__](https://lupyuen.github.io/pinetime-rust-mynewt/articles/pinetime) the wired way
+
+-   After the firmware has been flashed to PineTime via the SWD port, we may update the firmware wirelessly (over Bluetooth LE) with the [__nRF Connect__](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile) mobile app
 
 -   Installs [__xPack OpenOCD__](https://xpack.github.io/openocd/install/) automatically
 
--   Uses [__`openocd-spi`__](https://github.com/lupyuen/openocd-spi) on Raspberry Pi
+-   Builds [__`openocd-spi`__](https://github.com/lupyuen/openocd-spi) on Raspberry Pi
+
+-   "Download from URL" and "Downloaded file" are still under development
 
 ## Requirements
 
@@ -53,3 +57,5 @@ cd pinetime-updater
 ## How It Works
 
 See [`run.sh`](run.sh)
+
+Check the article ["PineTime doesn't run Linux... But that's OK!"](https://lupyuen.github.io/pinetime-rust-mynewt/articles/pinetime)
