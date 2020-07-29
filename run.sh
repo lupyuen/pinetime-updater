@@ -4,14 +4,12 @@
 set -e  #  Exit when any command fails.
 set -x  #  Echo all commands.
 
-#  TODO: git pull
+#  TODO: Fetch the latest bootload and firmware versions
+#  git pull
 
 function main {
-    set +x; echo; echo "----- Installing neofetch..."; set -x
-    #  TODO: Install neofetch
-    #  sudo apt install -y git neofetch wget
-    #  sudo pacman -Syyu git neofetch wget
-    #  sudo brew install git neofetch wget
+    #  Install neofetch
+    install_neofetch
 
     #  TODO: Check whether this a Raspberry Pi
     #  model=`neofetch model`
@@ -76,7 +74,7 @@ function main {
 
 #  Download xPack OpenOCD from xpack.github.io/openocd/install/
 function install_openocd {
-    #  Exit if already installed
+    #  Return if already installed
     if [ -e xpack-openocd/bin/openocd ]; then
         return
     fi
@@ -115,14 +113,14 @@ function install_openocd {
 
 #  Download and build openocd_spi from github.com/lupyuen/openocd-spi
 function install_openocd_spi {
-    #  Exit if already installed
+    #  Return if already installed
     if [ -e openocd_spi/bin/openocd ]; then
         return
     fi
 
     set +x; echo; echo "----- Installing build tools..."; set -x
 
-    #  TODO: For Ubuntu
+    #  TODO: For Debian
     #  sudo apt install -y wget git autoconf libtool make pkg-config libusb-1.0-0 libusb-1.0-0-dev libhidapi-dev libftdi-dev telnet raspi-config
 
     #  TODO: For Arch Linux
@@ -136,6 +134,28 @@ function install_openocd_spi {
     ./configure --enable-sysfsgpio --enable-bcm2835spi --enable-cmsis-dap
     make
     popd
+}
+
+#  Install neofetch
+function install_neofetch {
+    #  Return if already installed
+    if command -v neofetch &> /dev/null; then
+        return
+    fi
+    set +x; echo; echo "----- Installing neofetch..."; set -x
+
+    #  Modules to be installed
+    local modules="git neofetch wget"
+    if [[ $(uname) == Darwin ]]; then
+        #  For macOS
+        brew install $modules
+    elif command -v apt &> /dev/null; then
+        #  For Debian
+        sudo apt install -y $modules
+    elif command -v pacman &> /dev/null; then
+        #  For Arch Linux
+        sudo pacman -Syyu $modules
+    fi
 }
 
 #  Start the script
