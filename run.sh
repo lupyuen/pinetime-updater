@@ -30,14 +30,18 @@ function main {
         4 "Downloaded file"
 
     #  TODO: Download the file
+    #  For Bootloader:
+    #  wget https://github.com/lupyuen/pinetime-rust-mynewt/releases/download/v4.1.7/mynewt_nosemi.elf.bin
+    #  For Application Firmware:
+    #  wget https://github.com/JF002/Pinetime/releases/download/0.7.1/pinetime-mcuboot-app.img
 
     #  TODO: If the URL is a GitHub Actions Artifact, prompt for GitHub Token
 
     #  TODO: Set the flash filename and address
     filename="a.img"
-    #  For Bootloader
+    #  For Bootloader:
     #  address=0x0
-    #  For Application Firmware
+    #  For Application Firmware:
     address=0x8000
 
     #  Flash the device    
@@ -57,8 +61,12 @@ function install_openocd {
 
     #  TODO: For Ubuntu
     sudo apt install -y wget git
+
     #  TODO: For Arch Linux
     #  sudo pacman -Syyu
+
+    #  TODO: For macOS
+    #  brew install wget git
 
     if [[ $(uname -m) == aarch64 ]]; then
         rm xpack-openocd-0.10.0-14-linux-arm64.tar.gz
@@ -100,8 +108,10 @@ function install_openocd_spi {
     fi
 
     set +x; echo; echo "----- Installing build tools..."; set -x
+
     #  TODO: For Ubuntu
     sudo apt install -y wget git autoconf libtool make pkg-config libusb-1.0-0 libusb-1.0-0-dev libhidapi-dev libftdi-dev telnet raspi-config
+
     #  TODO: For Arch Linux
     #  sudo pacman -Syyu raspi-config
 
