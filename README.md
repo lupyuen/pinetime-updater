@@ -4,7 +4,7 @@
 
 - Flash the __Latest Bootloader and Firmware__ (FreeRTOS) to PineTime Smart Watch with OpenOCD
 
-- Installs [__xPack OpenOCD__](xpack.github.io/openocd/install/) automatically
+- Installs [__xPack OpenOCD__](https://xpack.github.io/openocd/install/) automatically
 
 - Uses [__`openocd-spi`__](https://github.com/lupyuen/openocd-spi) on Raspberry Pi
 
