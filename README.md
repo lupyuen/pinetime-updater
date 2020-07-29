@@ -23,6 +23,7 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # For Raspberry Pi Only: Enable SPI port with raspi-config
+# Select Interfacing Options → SPI → Yes
 sudo raspi-config
 
 # Download the bash and OpenOCD scripts
