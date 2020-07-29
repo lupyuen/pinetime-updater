@@ -33,9 +33,14 @@ function main {
 
     #  TODO: If the URL is a GitHub Actions Artifact, prompt for GitHub Token
 
-    #  Flash the device
+    #  TODO: Set the flash filename and address
     filename="a.img"
+    #  For Bootloader
+    #  address=0x0
+    #  For Application Firmware
     address=0x8000
+
+    #  Flash the device    
     xpack-openocd/bin/openocd \
         -c " set filename \"$filename\" " \
         -c " set address  \"$address\" " \
