@@ -7,18 +7,25 @@ set -x  #  Echo all commands.
 #  TODO: git pull
 
 function main {
+    #  TODO: Install neofetch
+
+    #  TODO: Check whether this a Raspberry Pi
+    #  neofetch model
+    #  model: Pine64 Pinebook Pro 
+
     #  Configure SWD Programmer
-    #  Select ST-Link v2 as SWD Programmer
-    swd_device=scripts/swd-stlink.ocd
 
-    #  Download xPack OpenOCD
-    install_openocd
-
+    #  If Raspberry Pi:
     #  Select Raspberry Pi as SWD Programmer
     #  swd_device=scripts/swd-pi.ocd
-
     #  Download openocd-spi
     #  install_openocd_spi
+
+    #  If not Raspberry Pi:
+    #  Select ST-Link v2 as SWD Programmer
+    swd_device=scripts/swd-stlink.ocd
+    #  Download xPack OpenOCD
+    install_openocd
 
     #  Show menu
     dialog \
