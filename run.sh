@@ -11,8 +11,9 @@ function main {
     #  Install neofetch
     install_neofetch
 
-    #  TODO: Check whether this a Raspberry Pi
-    #  model=`neofetch model`
+    #  Check whether this a Raspberry Pi
+    model=`neofetch model`
+    
     #  model: Raspberry Pi 4 Model B Rev 1.1 
     #  model: Pine64 Pinebook Pro
     #  model: MacBookPro10,1
@@ -78,37 +79,38 @@ function install_openocd {
     if [ -e xpack-openocd/bin/openocd ]; then
         return
     fi
+    set +x; echo; echo "----- Installing xPack OpenOCD..."; set -x
 
-    if [[ $(uname -m) == aarch64 ]]; then
-        rm xpack-openocd-0.10.0-14-linux-arm64.tar.gz
-        wget https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-linux-arm64.tar.gz
-        tar -xf xpack-openocd-0.10.0-14-linux-arm64.tar.gz
-        rm xpack-openocd-0.10.0-14-linux-arm64.tar.gz
-        mv xpack-openocd-0.10.0-14 xpack-openocd
-    else
-        echo TODO
+    local version=0.10.0-14
+    local os=
+    if [[ $(uname) == Darwin ]]; then
+        #  For macOS: https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-darwin-x64.tar.gz
+        os=darwin-x64
+    elif [[ $(uname -m) == aarch32 ]]; then
+        #  For Arm32: https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-linux-arm.tar.gz
+        os=linux-arm
+    elif [[ $(uname -m) == aarch64 ]]; then
+        #  For Arm64: https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-linux-arm64.tar.gz
+        os=linux-arm64
+    elif [[ $(uname -m) == i686 ]]; then
+        #  For x86: https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-linux-x32.tar.gz
+        os=linux-x32
+    elif [[ $(uname -m) == x86_64 ]]; then
+        #  For x64: https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-linux-x64.tar.gz
+        os=linux-x64
     fi
+    #  TODO
+    #  Win32: https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-win32-x32.zip
+    #  Win64: https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-win32-x64.zip
 
-    #  macOS:
-    #  wget https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-darwin-x64.tar.gz
-
-    #  Linux Arm32:
-    #  wget https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-linux-arm.tar.gz
-
-    #  Linux Arm64:
-    #  wget https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-linux-arm64.tar.gz
-
-    #  Linux x32:
-    #  wget https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-linux-x32.tar.gz
-
-    #  Linux x64:
-    #  wget https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-linux-x64.tar.gz
-
-    #  Win32:
-    #  https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-win32-x32.zip
-
-    #  Win64:
-    #  https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-win32-x64.zip
+    #  Download xPack OpenOCD
+    if [ -f xpack-openocd-$version-$os.tar.gz ]; then
+        rm xpack-openocd-$version-$os.tar.gz
+    fi
+    wget https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v$version/xpack-openocd-$version-$os.tar.gz
+    tar -xf xpack-openocd-$version-$os.tar.gz
+    rm xpack-openocd-$version-$os.tar.gz
+    mv xpack-openocd-$version xpack-openocd
 }
 
 #  Download and build openocd_spi from github.com/lupyuen/openocd-spi
@@ -117,17 +119,23 @@ function install_openocd_spi {
     if [ -e openocd_spi/bin/openocd ]; then
         return
     fi
+    set +x; echo; echo "----- Installing openocd-spi..."; set -x
 
-    set +x; echo; echo "----- Installing build tools..."; set -x
 
-    #  TODO: For Debian
-    #  sudo apt install -y wget git autoconf libtool make pkg-config libusb-1.0-0 libusb-1.0-0-dev libhidapi-dev libftdi-dev telnet raspi-config
+    #  Modules to be installed
+    local modules="wget git autoconf libtool make pkg-config libusb-1.0-0 libusb-1.0-0-dev libhidapi-dev libftdi-dev telnet raspi-config"
+    if [[ $(uname) == Darwin ]]; then
+        #  For macOS
+        brew install $modules
+    elif command -v apt &> /dev/null; then
+        #  For Debian
+        sudo apt install -y $modules
+    elif command -v pacman &> /dev/null; then
+        #  For Arch Linux
+        sudo pacman -Syyu $modules
+    fi
 
-    #  TODO: For Arch Linux
-    #  sudo pacman -Syyu raspi-config
-
-    #  TODO: raspi-config to enable SPI
-
+    #  Download and build openocd-spi
     git clone https://github.com/lupyuen/openocd-spi
     pushd openocd-spi
     ./bootstrap
