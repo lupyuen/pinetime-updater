@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#  Flash Mynewt Application to nRF52 on macOS, Linux and Raspberry Pi
+#  Flash to PineTime ROM (nRF52) on macOS, Linux and Raspberry Pi
 
 set -e  #  Exit when any command fails.
 set -x  #  Echo all commands.
