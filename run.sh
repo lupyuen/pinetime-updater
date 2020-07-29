@@ -162,12 +162,19 @@ function install_openocd_spi {
 
     #  Download and build openocd-spi
     set +x; echo; echo "----- Installing openocd-spi..."; set -x
+    if [ -d openocd-spi ]; then
+        rm -r openocd-spi
+    fi
     git clone https://github.com/lupyuen/openocd-spi
     pushd openocd-spi
     ./bootstrap
     ./configure --enable-sysfsgpio --enable-bcm2835spi --enable-cmsis-dap
     make
     popd
+    if [ ! -d openocd-spi/bin ]; then
+        mkdir openocd-spi/bin
+    fi
+    cp openocd-spi/src/openocd openocd-spi/bin/
 }
 
 #  Install neofetch
