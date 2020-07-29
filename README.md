@@ -2,23 +2,23 @@
 
 ![](pinetime-updater.png)
 
-- Flash the __Latest Bootloader and Firmware__ (FreeRTOS) to PineTime Smart Watch with OpenOCD
+-   Flash the __Latest Bootloader and Firmware__ (FreeRTOS) to PineTime Smart Watch with OpenOCD
 
-- Installs [__xPack OpenOCD__](https://xpack.github.io/openocd/install/) automatically
+-   Installs [__xPack OpenOCD__](https://xpack.github.io/openocd/install/) automatically
 
-- Uses [__`openocd-spi`__](https://github.com/lupyuen/openocd-spi) on Raspberry Pi
-
-[Video of PineTime Updater on Raspberry Pi](https://youtu.be/PZ5NW8q8Zok)
-
-[Video of PineTime Updater on macOS](https://youtu.be/2p4EZqevVJQ)
+-   Uses [__`openocd-spi`__](https://github.com/lupyuen/openocd-spi) on Raspberry Pi
 
 ## Requirements
 
 -   Linux or macOS, connected to PineTime with [ST-Link v2 Compatible](https://www.aliexpress.com/wholesale?catId=0&initiative_id=SB_20180924134644&SearchText=st-link+v2&switch_new_app=y)
 
--   Or Raspberry Pi with Raspberry Pi OS, connected to PineTime via the SPI port...
+    [Video of PineTime Updater on macOS](https://youtu.be/2p4EZqevVJQ)
+
+-   Or Raspberry Pi with Raspberry Pi OS (32-bit), connected to PineTime via the SPI port...
 
     ["Connect PineTime to Raspberry Pi"](https://github.com/lupyuen/visual-embedded-rust/blob/master/README.md#connect-pinetime-to-raspberry-pi)
+
+    [Video of PineTime Updater on Raspberry Pi](https://youtu.be/PZ5NW8q8Zok)
 
 ## How To Run
 
