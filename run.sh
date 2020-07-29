@@ -7,11 +7,17 @@ set -x  #  Echo all commands.
 #  TODO: git pull
 
 function main {
+    set +x; echo; echo "----- Installing neofetch..."; set -x
     #  TODO: Install neofetch
+    #  sudo apt install -y git neofetch wget
+    #  sudo pacman -Syyu git neofetch wget
+    #  sudo brew install git neofetch wget
 
     #  TODO: Check whether this a Raspberry Pi
-    #  neofetch model
-    #  model: Pine64 Pinebook Pro 
+    #  model=`neofetch model`
+    #  model: Raspberry Pi 4 Model B Rev 1.1 
+    #  model: Pine64 Pinebook Pro
+    #  model: MacBookPro10,1
 
     #  Configure SWD Programmer
 
@@ -66,15 +72,6 @@ function install_openocd {
         return
     fi
 
-    #  TODO: For Ubuntu
-    sudo apt install -y wget git
-
-    #  TODO: For Arch Linux
-    #  sudo pacman -Syyu
-
-    #  TODO: For macOS
-    #  brew install wget git
-
     if [[ $(uname -m) == aarch64 ]]; then
         rm xpack-openocd-0.10.0-14-linux-arm64.tar.gz
         wget https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/xpack-openocd-0.10.0-14-linux-arm64.tar.gz
@@ -117,7 +114,7 @@ function install_openocd_spi {
     set +x; echo; echo "----- Installing build tools..."; set -x
 
     #  TODO: For Ubuntu
-    sudo apt install -y wget git autoconf libtool make pkg-config libusb-1.0-0 libusb-1.0-0-dev libhidapi-dev libftdi-dev telnet raspi-config
+    #  sudo apt install -y wget git autoconf libtool make pkg-config libusb-1.0-0 libusb-1.0-0-dev libhidapi-dev libftdi-dev telnet raspi-config
 
     #  TODO: For Arch Linux
     #  sudo pacman -Syyu raspi-config
