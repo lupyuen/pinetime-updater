@@ -58,6 +58,15 @@ function main {
     address=0x8000
 
     #  Flash the device    
+
+    #  If Raspberry Pi:
+    #  openocd_spi/bin/openocd \
+    #      -c " set filename \"$filename\" " \
+    #      -c " set address  \"$address\" " \
+    #      -f $swd_device \
+    #      -f scripts/flash-program.ocd
+
+    #  If not Rasperry Pi:
     xpack-openocd/bin/openocd \
         -c " set filename \"$filename\" " \
         -c " set address  \"$address\" " \
