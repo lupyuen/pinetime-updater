@@ -20,7 +20,9 @@ function main {
     #  Download openocd-spi
     #  install_openocd_spi
 
-    #  dialog --menu "What would you like to flash to PineTime today?" 0 0 0 1 "Latest Bootloader" 2 "Latest Firmware (FreeRTOS)" 3 "Download from URL" 4 "Downloaded file"
+    dialog --menu "What would you like to flash to PineTime today?" 0 0 0 1 "Latest Bootloader" 2 "Latest Firmware (FreeRTOS)" 3 "Download from URL" 4 "Downloaded file"
+
+    #  TODO: Download the file
 
     #  Flash the device
     filename="a.img"
