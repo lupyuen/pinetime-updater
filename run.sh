@@ -47,7 +47,11 @@ function install_openocd {
     if [ -e xpack-openocd/bin/openocd ]; then
         return
     fi
+
+    #  TODO: For Ubuntu
     sudo apt install -y wget git
+    #  TODO: For Arch Linux
+    #  sudo pacman -Syyu
 
     if [[ $(uname -m) == aarch64 ]]; then
         rm xpack-openocd-0.10.0-14-linux-arm64.tar.gz
@@ -87,8 +91,14 @@ function install_openocd_spi {
     if [ -e openocd_spi/bin/openocd ]; then
         return
     fi
+
     set +x; echo; echo "----- Installing build tools..."; set -x
-    sudo apt install -y wget git autoconf libtool make pkg-config libusb-1.0-0 libusb-1.0-0-dev libhidapi-dev libftdi-dev telnet
+    #  TODO: For Ubuntu
+    sudo apt install -y wget git autoconf libtool make pkg-config libusb-1.0-0 libusb-1.0-0-dev libhidapi-dev libftdi-dev telnet raspi-config
+    #  TODO: For Arch Linux
+    #  sudo pacman -Syyu raspi-config
+
+    #  TODO: raspi-config to enable SPI
 
     git clone https://github.com/lupyuen/openocd-spi
     pushd openocd-spi
