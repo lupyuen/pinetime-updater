@@ -1,0 +1,40 @@
+# This is an OpenOCD script that connects Raspberry Pi to the nRF52 and enables flash protection
+
+# From https://devzone.nordicsemi.com/f/nordic-q-a/42824/flashing-nrf5832-using-only-st-link-v2-and-openocd
+gdb_flash_program enable
+gdb_breakpoint_override hard
+
+# Connect to the device.
+init
+
+# Raspberry Pi fails with timeout when calling "reset halt" here, so we "reset" then "halt".
+echo "Stopping..."
+reset
+halt
+echo ""
+
+# Dump UICR flash region to a file. Creates the original UICR file.
+# flash read_bank 1 scripts/nrf52-pi/nrf52-uicr-original.bin 0x0 0x210
+
+# Fetch APPROTECTSTATUS status register for access port protection. 
+echo "Checking flash protection..."
+set flash_protection [nrf52.dap apreg 1 0x0c]
+echo "Flash protection is $flash_protection"
+
+# APPROTECTSTATUS status register should be 1, which means flash protection disabled.
+if {$flash_protection != 1} {
+    echo "Flash is already protected"
+    exit 1
+}
+echo "Flash is unprotected"
+
+# Set APPROTECT to 0 (enable flash protection). APPROTECT is at address 0x10001208
+echo "Enabling flash protection..."
+flash fillw 0x10001208 0xFFFFFF00 0x01
+echo ""
+
+# Restart to update the flash protection.
+echo "**** Shut down and power off your Raspberry Pi. Wait 30 seconds then power on your Raspberry Pi. Run flash-protect.sh to check flash protection."
+echo ""
+reset
+exit
