@@ -50,6 +50,7 @@ function main {
     local selection=$(<"$input")
 
     #  Set the URL, filename and address
+    set +x  #  Disable command echo
     local url=
     local filename=
     local address=
@@ -69,17 +70,34 @@ function main {
             address=0x8000
             ;;
         4)  #  Downloaded file
-            echo "TODO"; exit
-            address=0x8000
+            dialog \
+                --title "Press Up/Down, Space and Enter to select a file" \
+                --fselect "$HOME/" \
+                10 70 \
+                2>$input
+            filename=$(<"$input")
+            address=0x8000            
             ;;
         *)  #  Cancel
             exit 0
     esac
+    set -x  #  Enable command echo
+
+    #  Quit if no file selected
+    if [ -z "$filename" ]; then
+        exit
+    fi
 
     #  Download the URL
-    #  TODO: If the URL is a GitHub Actions Artifact, prompt for GitHub Token
-    set +x; echo; echo "----- Downloading $url..."; set -x
-    wget $url -O $filename
+    if [ ! -z "$url" ]; then
+        #  TODO: If the URL is a GitHub Actions Artifact, prompt for GitHub Token
+        set +x; echo; echo "----- Downloading $url..."; set -x
+        wget -q $url -O $filename
+    fi
+    if [ ! -f "$filename" ]; then
+        set +x; echo; echo "----- File not found: $filename"; set -x
+        exit
+    fi
 
     #  Flash the device    
     set +x; echo; echo "----- Flashing $filename to address $address..."; set -x
