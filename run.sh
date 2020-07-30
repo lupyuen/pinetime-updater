@@ -66,8 +66,20 @@ function main {
             address=0x8000
             ;;
         3)  #  Download from URL
-            echo "TODO"; exit
-            address=0x8000
+            dialog --inputbox \
+                "URL to download:" \
+                0 0 \
+                2>$input
+            url=$(<"$input")
+
+            #  Extract the filename from the last part of the URL: "https//aaa/bb.c" becomes "/tmp/bb.c"
+            filename=/tmp/`basename "$url"`
+
+            dialog --inputbox \
+                "Flash to address: (0x0 for bootloader)" \
+                0 0 0x8000 \
+                2>$input
+            address=$(<"$input")
             ;;
         4)  #  Downloaded file
             dialog \
@@ -76,22 +88,30 @@ function main {
                 10 70 \
                 2>$input
             filename=$(<"$input")
-            address=0x8000            
+
+            dialog --inputbox \
+                "Flash to address: (0x0 for bootloader)" \
+                0 0 0x8000 \
+                2>$input
+            address=$(<"$input")
             ;;
         *)  #  Cancel
             exit 0
     esac
     set -x  #  Enable command echo
 
-    #  Quit if no file selected
+    #  Quit if no file or address selected
     if [ -z "$filename" ]; then
+        exit
+    fi
+    if [ -z "$address" ]; then
         exit
     fi
 
     #  Download the URL
     if [ ! -z "$url" ]; then
         #  TODO: If the URL is a GitHub Actions Artifact, prompt for GitHub Token
-        set +x; echo; echo "----- Downloading $url..."; set -x
+        set +x; echo; echo "----- Downloading $url to $filename... (If it stops here, URL is invalid)"; set -x
         wget -q $url -O $filename
     fi
     if [ ! -f "$filename" ]; then
