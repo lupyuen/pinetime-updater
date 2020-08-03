@@ -207,7 +207,8 @@ function install_openocd_spi {
     pushd openocd-spi
     ./bootstrap
     ./configure --enable-sysfsgpio --enable-bcm2835spi --enable-cmsis-dap
-    make -j
+    #  Don't use "make -j" on Raspberry Pi 3, it will run out of swap space
+    make
     popd
     if [ ! -d openocd-spi/bin ]; then
         mkdir openocd-spi/bin
