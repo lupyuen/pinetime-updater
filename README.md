@@ -10,6 +10,8 @@
 
 -   Builds [__`openocd-spi`__](https://github.com/lupyuen/openocd-spi) on Raspberry Pi
 
+-   Also works for flashing any device with an SWD port (like STM32 Blue Pill)
+
 ## Requirements
 
 -   Linux or macOS, connected to PineTime with [ST-Link v2 Compatible](https://www.aliexpress.com/wholesale?catId=0&initiative_id=SB_20180924134644&SearchText=st-link+v2&switch_new_app=y)
