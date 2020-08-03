@@ -60,7 +60,7 @@ cd pinetime-updater
 
 (This section is for Raspberry Pi only)
 
-If we see Clock Speed and nothing else after that…
+If we see `Clock Speed` and nothing else after that…
 
 ```
 Info : BCM2835 SPI SWD driver
@@ -83,9 +83,17 @@ Also enter `sudo raspi-config` and confirm that the SPI port has been enabled.
 
 ## How It Works
 
-See [`run.sh`](run.sh)
+See [`run.sh`](run.sh) for the flashing steps.
 
-Check the article ["PineTime doesn't run Linux... But that's OK!"](https://lupyuen.github.io/pinetime-rust-mynewt/articles/pinetime)
+Once the latest MCUBoot Bootloader and FreeRTOS Firmware have been flashed to PineTime, we will be able to update the firmware wirelessly with the nRF Connect mobile app like this...
+
+["Download PineTime Firmware"](https://lupyuen.github.io/pinetime-rust-mynewt/articles/cloud#download-and-test-our-pinetime-firmware)
+
+(Except we won't be downloading the firmware from GitHub Actions. We will have the official link soon.)
+
+For more about PineTime...
+
+["PineTime doesn't run Linux... But that's OK!"](https://lupyuen.github.io/pinetime-rust-mynewt/articles/pinetime)
 
 ## Sample Log for Raspberry Pi
 
