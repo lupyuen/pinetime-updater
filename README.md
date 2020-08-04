@@ -2,7 +2,7 @@
 
 ![](pinetime-updater.png)
 
--   Flash the [__Latest Bootloader (MCUBoot)__](https://lupyuen.github.io/pinetime-rust-mynewt/articles/mcuboot) and [__Firmware (FreeRTOS)__](https://github.com/JF002/Pinetime) to [__PineTime Smart Watch__](https://lupyuen.github.io/pinetime-rust-mynewt/articles/pinetime) the wired way
+-   Flash the [__Latest Bootloader (MCUBoot)__](https://lupyuen.github.io/pinetime-rust-mynewt/articles/mcuboot) and [__Firmware (InfiniTime based on FreeRTOS)__](https://github.com/JF002/Pinetime) to [__PineTime Smart Watch__](https://lupyuen.github.io/pinetime-rust-mynewt/articles/pinetime) the wired way
 
 -   After the firmware has been flashed to PineTime via the SWD port, we may update the firmware wirelessly (over Bluetooth LE) with the [__nRF Connect__](https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Connect-for-mobile) mobile app
 
@@ -87,7 +87,7 @@ Also enter `sudo raspi-config` and confirm that the SPI port has been enabled.
 
 See [`run.sh`](run.sh) for the flashing steps.
 
-Once the latest MCUBoot Bootloader and FreeRTOS Firmware have been flashed to PineTime, we will be able to update the firmware wirelessly with the nRF Connect mobile app like this...
+Once the latest MCUBoot Bootloader and InfiniTime Firmware have been flashed to PineTime, we will be able to update the firmware wirelessly with the nRF Connect mobile app like this...
 
 ["Download PineTime Firmware"](https://lupyuen.github.io/pinetime-rust-mynewt/articles/cloud#download-and-test-our-pinetime-firmware)
 

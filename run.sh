@@ -42,8 +42,8 @@ function main {
     dialog \
         --menu "What would you like to flash to PineTime today?" \
         0 0 0 \
-        1 "Latest Bootloader" \
-        2 "Latest Firmware (FreeRTOS)" \
+        1 "Latest Bootloader (MCUBoot)" \
+        2 "Latest Firmware (InfiniTime)" \
         3 "Download from URL" \
         4 "Downloaded file" \
         2>$input
