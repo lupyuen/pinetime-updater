@@ -49,14 +49,48 @@ We should see `Done!` when the flashing has completed.
 
 ## Remove Flash ROM Protection
 
-The above steps will fail when PineTime has Flash ROM Protection enabled.
+The above steps will fail when PineTime has Flash ROM Protection enabled. 
+
+All PineTime watches shipped before August 2020 will have Flash ROM Protection enabled.
 
 To remove PineTime's Flash ROM Protection (with Raspberry Pi only)...
 
-```bash
-cd pinetime-updater
-./scripts/flash-unprotect.sh
-```
+1. Power off our Raspberry Pi
+
+1. Connect our Raspberry Pi with Raspberry Pi OS (32-bit) to PineTime via the SPI port...
+
+    ["Connect PineTime to Raspberry Pi"](https://github.com/lupyuen/visual-embedded-rust/blob/master/README.md#connect-pinetime-to-raspberry-pi)
+
+1. Power on our Raspberry Pi. Open the Terminal and enter...
+
+    ```bash
+    cd pinetime-updater
+    ./scripts/flash-unprotect.sh
+    ```
+
+    We should see...
+
+    ```
+    Removing flash protection and erasing flash...
+    Shut down and power off your Raspberry Pi. Wait 30 seconds then power on your Raspberry Pi. Run flash-unprotect.sh to check flash protection.
+    ```
+
+1.  Follow the instructions to power off the Raspberry Pi.
+
+1.  After 30 seconds, power it on and enter...
+
+    ```bash
+    cd pinetime-updater
+    ./scripts/flash-unprotect.sh
+    ```
+
+    We should see...
+
+    ```
+    Flash is already unprotected
+    ```
+    
+1.  Follow the steps in the previous section to flash our PineTime
 
 ## Raspberry Pi Troubleshooting
 
