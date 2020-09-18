@@ -24,8 +24,10 @@
     |VCC (3.3V)|3.3V
 
     ![SWD Connection to ST-Link v2 Compatible](https://lupyuen.github.io/images/pinetime-stlink.jpg)
+    
+    [SWD Pinout on PineTime](https://wiki.pine64.org/index.php?title=Reprogramming_the_PineTime#SWD_Pinout)
 
-    [Video of PineTime Updater on macOS](https://youtu.be/2p4EZqevVJQ)
+    [Video of PineTime Updater with ST-Link on macOS](https://youtu.be/2p4EZqevVJQ)
 
 -   Or Raspberry Pi with Raspberry Pi OS (32-bit), connected to PineTime via the SPI port...
 
