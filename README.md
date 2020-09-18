@@ -16,6 +16,15 @@
 
 -   Linux or macOS, connected to PineTime with [ST-Link v2 Compatible](https://www.aliexpress.com/wholesale?catId=0&initiative_id=SB_20180924134644&SearchText=st-link+v2&switch_new_app=y)
 
+    |PineTime|ST-Link|
+    |:--|:--|
+    |GND|GND
+    |SWDCLK|SWDCLK
+    |SWDIO|SWDIO
+    |VCC (3.3V)|3.3V
+
+    ![SWD Connection to ST-Link v2 Compatible](https://lupyuen.github.io/images/pinetime-stlink.jpg)
+
     [Video of PineTime Updater on macOS](https://youtu.be/2p4EZqevVJQ)
 
 -   Or Raspberry Pi with Raspberry Pi OS (32-bit), connected to PineTime via the SPI port...
