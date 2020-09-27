@@ -46,6 +46,7 @@ function main {
         2 "Latest Firmware (InfiniTime)" \
         3 "Download from URL" \
         4 "Downloaded file" \
+        5 "Program bootloader logo" \
         2>$input
     local selection=$(<"$input")
 
@@ -95,6 +96,16 @@ function main {
                 2>$input
             address=$(<"$input")
             ;;
+
+        5) # Program bootloader logo
+            dialog --msgbox \
+                "The current firmware will be overridden with the logo loader. Wait for the logo to fully appear on the watch, this means the logo is programmed into the flash memory. Then you need to reprogram the bootloader and the application firmware." \
+                0 0
+            url=https://github.com/JF002/Pinetime/releases/download/0.7.1/pinetime-graphics.bin
+            filename=/tmp/pinetime-graphics.bin
+            address=0x0
+            ;;
+
         *)  #  Cancel
             exit 0
     esac
