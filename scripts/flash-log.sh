@@ -5,7 +5,6 @@ set -e  #  Exit when any command fails.
 set -x  #  Echo all commands.
 
 xpack-openocd/bin/openocd
-    -c ' telnet_port 4444 '
     -c ' set filename "firmware.bin" ' 
     -c ' set address  "0x0" ' 
     -f scripts/swd-stlink.ocd 
