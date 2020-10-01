@@ -26,8 +26,8 @@ echo ""
 
 # Restart the device and start the bootloader.
 echo "Restarting..."
-####reset init
-####resume
+reset init
+resume
 echo ""
 
 echo "**** Done!"
