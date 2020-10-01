@@ -21,7 +21,7 @@ halt
 echo ""
 
 echo "Flashing ROM..."
-####program "$filename" verify $address
+program "$filename" verify $address
 echo ""
 
 # Restart the device and start the bootloader.
