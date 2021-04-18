@@ -52,6 +52,7 @@ git clone https://github.com/lupyuen/pinetime-updater
 
 # Run the bash script
 cd pinetime-updater
+chmod +x run.sh
 ./run.sh
 
 ```
@@ -129,6 +130,8 @@ SWD DPIDR 0x2ba01477
 Then the connection to the SWD Port is most likely loose, please check the pins.
 
 Also enter `sudo raspi-config` and confirm that the SPI port has been enabled.
+
+If the PineTime battery is completely empty, this may also cause connectivity problems.
 
 ## How It Works
 
