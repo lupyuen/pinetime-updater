@@ -57,12 +57,12 @@ function main {
     local address=
     case "$selection" in
         1)  #  For Bootloader
-            url=https://github.com/lupyuen/pinetime-rust-mynewt/releases/download/v4.1.7/mynewt_nosemi.elf.bin
+            url=https://github.com/JF002/pinetime-mcuboot-bootloader/releases/download/1.0.0/bootloader.bin
             filename=/tmp/mynewt_nosemi.elf.bin
             address=0x0
             ;;
         2)  #  For Application Firmware
-            url=https://github.com/JF002/Pinetime/releases/download/0.7.1/pinetime-mcuboot-app.img
+            url=https://github.com/JF002/InfiniTime/releases/download/1.0.0/pinetime-mcuboot-app-image-1.0.0.bin
             filename=/tmp/pinetime-mcuboot-app.img
             address=0x8000
             ;;
