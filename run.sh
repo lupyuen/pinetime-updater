@@ -62,7 +62,7 @@ function main {
             address=0x0
             ;;
         2)  #  For Application Firmware
-            url=https://github.com/InfiniTimeOrg/InfiniTime/releases/download/1.6.0/pinetime-mcuboot-app-image-1.6.0.bin
+            url=https://github.com/InfiniTimeOrg/InfiniTime/releases/download/1.8.0/pinetime-mcuboot-app-image-1.8.0.bin
             filename=/tmp/pinetime-mcuboot-app.img
             address=0x8000
             ;;
