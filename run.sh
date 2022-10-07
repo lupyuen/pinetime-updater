@@ -217,7 +217,7 @@ function install_openocd_spi {
     git clone https://github.com/lupyuen/openocd-spi
     pushd openocd-spi
     ./bootstrap
-    ./configure --enable-sysfsgpio --enable-bcm2835spi --enable-cmsis-dap
+    CFLAGS=-Wno-error ./configure --enable-sysfsgpio --enable-bcm2835spi --enable-cmsis-dap
     #  Don't use "make -j" on Raspberry Pi 3, it will run out of swap space
     make
     popd
